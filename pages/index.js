@@ -10,43 +10,40 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <div className="row mt-5 ">
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+          <div className="col-10 pt-5">
+            <h1 className={styles.title}>Casa Vida</h1>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+            <p className={styles.description}>
+              Quando você abraça uma causa a causa abraça você.
             </p>
-          </a>
+          </div>
+          <div className="col-2 d-flex justify-content-center">
+            <img src="/logo.png" alt="Casa Vida Logo" />
+
+          </div>
+        </div>
+        <div className={styles.containerHead}>
+
+          <div className={styles.cardLogin}>
+            <form>
+              <div className="mb-3">
+                <label for="inputLogin" className="form-label">Usuário</label>
+                <input name="login" className="form-control" id="inputLogin" />
+              </div>
+              <div className="mb-3">
+                <label for="inputSenha" className="form-label">Senha</label>
+                <input name="password" type='password' className="form-control" id="inputSenha" />
+              </div>
+              <div className={styles.toolbar} >
+                <a href='/forgoutpassword' className="btn btn-link mb-4" >Esqueci a senha</a>
+                <button type="button" className="btn btn-primary mb-4">Entrar</button>
+                <a href='/signup' className="btn btn-success ">Cadastre-se</a>
+              </div>
+            </form>
+          </div>
+
         </div>
       </main>
 
@@ -56,10 +53,9 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+          Orggestor - Sua ONG eficiente e transparente.
         </a>
       </footer>
-    </div>
+    </div >
   )
 }
