@@ -8,10 +8,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hapi/iron": "^6.0.0",
     "bootstrap": "^5.0.0-beta2",
-    "bower": "^1.8.12",
+    "cookie": "^0.4.1",
     "next": "10.0.7",
+    "next-connect": "^0.10.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "swr": "^0.4.2",
+    "uuid": "^8.3.2"
   }
 }
