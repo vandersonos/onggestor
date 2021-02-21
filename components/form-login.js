@@ -1,7 +1,8 @@
 import Link from 'next/link'
+import styles from '../styles/Home.module.css'
 
 const Form = ({ isLogin, errorMessage, onSubmit }) => (
-    <div className={styles.cardLogin}>
+    <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
         <form onSubmit={onSubmit}>
             <div className="mb-3">
                 <label for="username" className="form-label">Usuário</label>
@@ -20,26 +21,26 @@ const Form = ({ isLogin, errorMessage, onSubmit }) => (
                 </div>
             )}
             <div className={styles.toolbar} >
-                <div className="submit">
-                    {isLogin ? (
+
+                {isLogin ? (
+                    <>
+                        <Link href="/forgoutpassword">
+                            <a >Esqueci a senha</a>
+                        </Link>
+                        <button type="submit" className="btn btn-primary mb-4 mt-4">Entrar</button>
+                        <Link href="/signup">
+                            <a>Cadastre-se</a>
+                        </Link>
+                    </>
+                ) : (
                         <>
-                            <Link href="/signup">
-                                <a>Cadastre-se</a>
+                            <Link href="/login">
+                                <a>Efetuar login</a>
                             </Link>
-                            <Link href="/forgoutpassword">
-                                <a >Esqueci a senha</a>
-                            </Link>
-                            <button type="submit" className="btn btn-primary mb-4">Entrar</button>
+                            <button type="submit">Cadastrar-se</button>
                         </>
-                    ) : (
-                            <>
-                                <Link href="/login">
-                                    <a>Efetuar login</a>
-                                </Link>
-                                <button type="submit">Cadastrar-se</button>
-                            </>
-                        )}
-                </div>
+                    )}
+
             </div>
 
             {errorMessage && <p className="error">{errorMessage}</p>}

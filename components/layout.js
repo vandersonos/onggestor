@@ -1,19 +1,27 @@
 import Head from 'next/head'
 import Header from './header'
-
+import styles from '../styles/Home.module.css'
 const Layout = (props) => (
-    <>
-        <Head>
-            <title>With Cookies</title>
-        </Head>
+  <>
+    <Head>
+      <title>With Cookies</title>
+    </Head>
 
-        <Header />
+    <Header />
 
-        <main>
-            <div className="container">{props.children}</div>
-        </main>
-
-        <style jsx global>{`
+    <main className='mb-5'>
+      {props.children}
+    </main>
+    <footer className={styles.footer}>
+      <a
+        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Orggestor - Sua ONG eficiente e transparente.
+        </a>
+    </footer>
+    <style jsx global>{`
       *,
       *::before,
       *::after {
@@ -32,7 +40,7 @@ const Layout = (props) => (
         padding: 2rem 1.25rem;
       }
     `}</style>
-    </>
+  </>
 )
 
 export default Layout
