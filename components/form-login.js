@@ -1,24 +1,30 @@
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
-const Form = ({ isLogin, errorMessage, onSubmit }) => (
+const Form = ({ isLogin, errorMessage, successMessage, onSubmit }) => (
     <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
         <form onSubmit={onSubmit}>
             <div className="mb-3">
-                <label for="username" className="form-label">Usuário</label>
+                <label htmlFor="username" className="form-label">Usuário</label>
                 <input name="login" className="form-control" id="username" required />
             </div>
             <div className="mb-3">
-                <label for="inputSenha" className="form-label">Senha</label>
+                <label htmlFor="inputSenha" className="form-label">Senha</label>
                 <input name="password" type='password' className="form-control" id="inputSenha" required />
             </div>
             {!isLogin && (
-                <div className="mb-3">
-                    <label>
-                        <span>Repita a senha</span>
-                        <input type="password" name="rpassword" required />
-                    </label>
-                </div>
+                <>
+                    <div className="mb-3">
+                        <label htmlFor='rpassword'>
+                            <span>Repita a senha</span>
+                        </label>
+                        <input type="password" name="rpassword" id="rpassword" className="form-control" required />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor='email'> Email </label>
+                        <input type="email" name="email" className="form-control" id="email" required />
+                    </div>
+                </>
             )}
             <div className={styles.toolbar} >
 
@@ -37,13 +43,14 @@ const Form = ({ isLogin, errorMessage, onSubmit }) => (
                             <Link href="/login">
                                 <a>Efetuar login</a>
                             </Link>
-                            <button type="submit">Cadastrar-se</button>
+                            <button type="submit" className="btn btn-primary mb-4 mt-4">Cadastrar</button>
                         </>
                     )}
 
             </div>
 
-            {errorMessage && <p className="error">{errorMessage}</p>}
+            {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
+            {successMessage && <p className="alert alert-success">{successMessage}</p>}
         </form>
         <style jsx>{`
             form,

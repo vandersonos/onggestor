@@ -14,16 +14,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   users.init({
-    createAt: DataTypes.DATE,
-    hash: DataTypes.STRING,
-    salt: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    email: DataTypes.STRING,
-    status: DataTypes.BOOLEAN
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    createAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    hash: { type: DataTypes.STRING, allowNull: false },
+    salt: { type: DataTypes.STRING, allowNull: false },
+    username: { type: DataTypes.STRING, unique: true },
+    email: { type: DataTypes.STRING, allowNull: false },
+    status: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true }
   }, {
     sequelize,
     modelName: 'users',
+    indexes: [{ unique: true, fields: ['username'] }]
   });
   return users;
 };

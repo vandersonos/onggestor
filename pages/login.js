@@ -8,6 +8,7 @@ const Login = () => {
   useUser({ redirectTo: '/', redirectIfFound: true })
 
   const [errorMsg, setErrorMsg] = useState('')
+  const [successMsg, setSuccessMsg] = useState('')
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -25,8 +26,12 @@ const Login = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
+
       if (res.status === 200) {
-        Router.push('/')
+        setSuccessMsg('Entrando...')
+        setTimeout(() => {
+          Router.push('/')
+        }, 1000);
       } else {
         throw new Error(await res.text())
       }
@@ -56,7 +61,7 @@ const Login = () => {
         </div>
         <div className="row mt-5 w-100">
 
-          <Form isLogin errorMessage={errorMsg} onSubmit={handleSubmit} />
+          <Form isLogin errorMessage={errorMsg} successMessage={successMsg} onSubmit={handleSubmit} />
 
         </div>
       </div>

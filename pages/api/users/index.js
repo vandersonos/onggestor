@@ -1,6 +1,15 @@
-const users = [{ id: 1 }, { id: 2 }, { id: 3 }]
+import { getLoginSession } from '../../../lib/auth'
+import { findUser } from '../../../lib/user'
 
-export default function handler(req, res) {
-    // Get data from your database
-    res.status(200).json(users)
+export default async function user(req, res) {
+    try {
+        const session = await getLoginSession(req)
+        console.log(session, 'session', session.dataValues.username)
+        const user = (session && (await findUser(session.dataValues))) ?? null
+
+        res.status(200).json({ user })
+    } catch (error) {
+        console.error(error)
+        res.status(500).end('Authentication token is invalid, please log in')
+    }
 }
