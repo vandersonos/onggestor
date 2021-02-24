@@ -8,20 +8,29 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "@hapi/iron": "^6.0.0",
+    "@popperjs/core": "^2.8.3",
+    "@zeit/next-less": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^5.0.0-beta2",
     "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
+    "jquery": "^3.5.1",
     "next": "10.0.7",
     "next-connect": "^0.10.0",
+    "next-images": "^1.7.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "react": "17.0.1",
+    "react-bootstrap": "^1.5.0",
     "react-dom": "17.0.1",
     "sequelize": "^6.5.0",
     "swr": "^0.4.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "webpack": "^5.24.1"
   }
 }

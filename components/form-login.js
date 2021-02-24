@@ -1,58 +1,72 @@
 import Link from 'next/link'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
-const Form = ({ isLogin, errorMessage, successMessage, onSubmit }) => (
-    <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
-        <form onSubmit={onSubmit}>
-            <div className="mb-3">
-                <label htmlFor="username" className="form-label">Usuário</label>
-                <input name="login" className="form-control" id="username" required />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="inputSenha" className="form-label">Senha</label>
-                <input name="password" type='password' className="form-control" id="inputSenha" required />
-            </div>
-            {!isLogin && (
-                <>
-                    <div className="mb-3">
-                        <label htmlFor='rpassword'>
-                            <span>Repita a senha</span>
-                        </label>
-                        <input type="password" name="rpassword" id="rpassword" className="form-control" required />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor='email'> Email </label>
-                        <input type="email" name="email" className="form-control" id="email" required />
-                    </div>
-                </>
-            )}
-            <div className={styles.toolbar} >
+const Form = ({ isLogin, errorMessage, successMessage, onSubmit, user }) => {
 
-                {isLogin ? (
+    return (
+        <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
+            <form onSubmit={onSubmit}>
+                <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Usuário</label>
+
+                    {user ? (
+                        <input name="login" className="form-control" id="username" defaultValue={user.username} readOnly />
+                    ) : (
+                            <input name="login" className="form-control" id="username" required />
+                        )}
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="inputSenha" className="form-label">Senha</label>
+                    <input name="password" type='password' className="form-control" id="inputSenha" required defaultValue={user ? user.password : ''} />
+                </div>
+                {!isLogin && (
                     <>
-                        <Link href="/forgoutpassword">
-                            <a >Esqueci a senha</a>
-                        </Link>
-                        <button type="submit" className="btn btn-primary mb-4 mt-4">Entrar</button>
-                        <Link href="/signup">
-                            <a>Cadastre-se</a>
-                        </Link>
+                        <div className="mb-3">
+                            <label htmlFor='rpassword'>
+                                <span>Repita a senha</span>
+                            </label>
+                            <input type="password" name="rpassword" id="rpassword" className="form-control" required defaultValue="" />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor='email'> Email </label>
+                            <input type="email" name="email" className="form-control" id="email" required defaultValue={user ? user.email : ''} />
+                        </div>
                     </>
-                ) : (
+                )}
+                <div className={styles.toolbar} >
+
+                    {isLogin ? (
+                        <>
+                            <Link href="/forgoutpassword">
+                                <a >Esqueci a senha</a>
+                            </Link>
+                            <button type="submit" className="btn btn-primary mb-4 mt-4">Entrar</button>
+                            <Link href="/signup">
+                                <a>Cadastre-se</a>
+                            </Link>
+                        </>
+                    ) : ("")}
+                    {!isLogin && !user ? (
                         <>
                             <Link href="/login">
                                 <a>Efetuar login</a>
                             </Link>
                             <button type="submit" className="btn btn-primary mb-4 mt-4">Cadastrar</button>
                         </>
-                    )}
+                    ) : ""}
+                    {!isLogin && user ? (
+                        <>
+                            <button type="submit" className="btn btn-primary mb-4 mt-4">Alterar</button>
+                        </>
+                    ) : ""}
 
-            </div>
+                </div>
 
-            {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
-            {successMessage && <p className="alert alert-success">{successMessage}</p>}
-        </form>
-        <style jsx>{`
+                {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
+                {successMessage && <p className="alert alert-success">{successMessage}</p>}
+            </form>
+            <style jsx>{`
             form,
             label {
                 display: flex;
@@ -91,8 +105,9 @@ const Form = ({ isLogin, errorMessage, successMessage, onSubmit }) => (
                 margin: 1rem 0 0;
             }
          `}</style>
-    </div>
+        </div>
 
-)
+    )
+}
 
 export default Form

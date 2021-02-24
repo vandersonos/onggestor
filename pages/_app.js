@@ -1,5 +1,7 @@
+import '@fortawesome/fontawesome-free/css/all.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/globals.css'
+import { useEffect } from "react";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {

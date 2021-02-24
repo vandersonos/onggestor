@@ -58,7 +58,7 @@ const Signup = () => {
 
                         <p className={styles.description}>
                             Quando você abraça uma causa a causa abraça você.
-            </p>
+                        </p>
                     </div>
                     <div className="col-2 d-flex justify-content-center">
                         <img src="/logo.png" alt="Casa Vida Logo" />
@@ -66,7 +66,7 @@ const Signup = () => {
                     </div>
                 </div>
                 <div className="row mt-5 w-100">
-                    <Form isLogin={false} errorMessage={errorMsg} successMessage={successMsg} onSubmit={handleSubmit} />
+                    <Form isLogin={false} errorMessage={errorMsg} successMessage={successMsg} onSubmit={handleSubmit} user={false} />
                 </div>
             </div>
         </Layout>
