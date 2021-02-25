@@ -1,9 +1,10 @@
 import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 import Router from 'next/router'
-import { useUser } from '../lib/hooks'
-import Layout from '../components/layout'
 import Form from '../components/form-login'
+import Head from 'next/head'
+import Header from '../components/header'
+import { useUser } from '../lib/hooks'
 const Login = () => {
   useUser({ redirectTo: '/', redirectIfFound: true })
 
@@ -41,42 +42,73 @@ const Login = () => {
     }
   }
   return (
-    <Layout>
+    <>
+      <Head>
+        <title>Login</title>
+      </Head>
+      <Header />
+      <main className="row main">
 
-      <div className={styles.main}>
+        <div className={styles.main}>
 
-        <div className="row mt-5 ">
+          <div className="row mt-5 ">
 
-          <div className="col-10 pt-5">
-            <h1 className={styles.title}>Casa Vida</h1>
+            <div className="col-10 pt-5">
+              <h1 className={styles.title}>Casa Vida</h1>
 
-            <p className={styles.description}>
-              Quando você abraça uma causa a causa abraça você.
+              <p className={styles.description}>
+                Quando você abraça uma causa a causa abraça você.
             </p>
+            </div>
+            <div className="col-2 d-flex justify-content-center">
+              <img src="/logo.png" alt="Casa Vida Logo" />
+
+            </div>
           </div>
-          <div className="col-2 d-flex justify-content-center">
-            <img src="/logo.png" alt="Casa Vida Logo" />
+          <div className="row mt-5 w-100">
+
+            <Form isLogin errorMessage={errorMsg} successMessage={successMsg} onSubmit={handleSubmit} />
 
           </div>
         </div>
-        <div className="row mt-5 w-100">
 
-          <Form isLogin errorMessage={errorMsg} successMessage={successMsg} onSubmit={handleSubmit} />
-
-        </div>
-      </div>
-
-
-      <style jsx>{`
-        .login {
+      </main>
+      <footer className="footer">
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Orggestor - Sua ONG eficiente e transparente.
+        </a>
+      </footer>
+      <style jsx global>{`
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: #333;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, Noto Sans, sans-serif, 'Apple Color Emoji',
+          'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+      }
+      .container {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem;
+      }
+      .login {
           max-width: 21rem;
           margin: 0 auto;
           padding: 1rem;
           border: 1px solid #ccc;
           border-radius: 4px;
         }
-      `}</style>
-    </Layout>
+    `}</style>
+    </>
   )
 }
 export default Login
