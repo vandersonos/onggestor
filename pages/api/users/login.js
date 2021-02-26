@@ -27,11 +27,9 @@ export default nextConnect()
             const session = { ...user }
 
             await setLoginSession(res, session)
-            console.log('teste   setLoginSession')
 
             res.status(200).send({ done: true })
         } catch (error) {
-            console.error(error)
             res.status(401).send(error.message)
         }
     })

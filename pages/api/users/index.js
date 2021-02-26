@@ -1,15 +1,14 @@
 import { getLoginSession } from '../../../lib/auth'
-import { findUser } from '../../../lib/user'
+import { findUsers } from '../../../lib/user'
 
-export default async function user(req, res) {
+export default async function list(req, res) {
     try {
-        const session = await getLoginSession(req)
-        console.log(session, 'session', session.dataValues.username)
-        const user = (session && (await findUser(session.dataValues))) ?? null
+        const users = await findUsers(req.body)
+        console.log(users)
 
-        res.status(200).json({ user })
+        res.status(200).json(users)
     } catch (error) {
         console.error(error)
-        res.status(500).end('Authentication token is invalid, please log in')
+        res.status(500).end('Oceorreu um erro ao consultar os usuários')
     }
 }

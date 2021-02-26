@@ -1,4 +1,3 @@
-
 import Head from 'next/head'
 import { useUser } from '../lib/hooks'
 import Header from './header'
@@ -8,16 +7,12 @@ const Layout = (props) => {
     <>
       <Head>
         <title>With Cookies</title>
-
-
       </Head>
       <Header />
       <main className="row main">
         {props.children}
-
       </main>
       <footer className="footer">
-
       </footer>
       <style jsx global>{`
       *,

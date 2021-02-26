@@ -15,7 +15,6 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-console.log(__dirname, config)
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -23,13 +22,12 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-    console.log(file)
+
     const model = require('./' + file)(sequelize, Sequelize.DataTypes);
-    console.log(file, model)
+
     db[model.name] = model;
   });
-console.log(
-  Object.keys(db), __dirname)
+
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
