@@ -16,12 +16,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      endereco: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
+      addres: { type: Sequelize.STRING, allowNull: false },
+      district: { type: Sequelize.STRING, allowNull: false },
+      cep: { type: Sequelize.STRING, allowNull: false, unique: true },
       url_img: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       email: {

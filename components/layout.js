@@ -12,8 +12,7 @@ const Layout = (props) => {
       <main className="row main">
         {props.children}
       </main>
-      <footer className="footer">
-      </footer>
+
       <style jsx global>{`
       *,
       *::before,

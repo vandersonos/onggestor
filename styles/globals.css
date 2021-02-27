@@ -50,3 +50,7 @@ main{
   justify-content: center;
   align-items: center;
 }
+.btn{
+  margin-left: 2px;
+  margin-right: 2px;
+}

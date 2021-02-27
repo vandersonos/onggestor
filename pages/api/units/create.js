@@ -1,4 +1,4 @@
-import { createUnit, findUnit } from '../../../lib/unit'
+import { createUnit, findUnit } from '../../../lib/units'
 
 export default async function signup(req, res) {
     try {
