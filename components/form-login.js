@@ -7,8 +7,14 @@ const Form = ({ isLogin, errorMessage, successMessage, onSubmit, user }) => {
     return (
         <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
             <form onSubmit={onSubmit}>
+                {!isLogin && (
+                    <div className="mb-3">
+                        <label htmlFor='name'> Nome </label>
+                        <input type="text" name="name" className="form-control" id="name" required defaultValue={user ? user.name : ''} />
+                    </div>)
+                }
                 <div className="mb-3">
-                    <label htmlFor="username" className="form-label">Usuário</label>
+                    <label htmlFor="username" className="form-label">CPF</label>
 
                     {user ? (
                         <input name="login" className="form-control" id="username" defaultValue={user.username} readOnly />

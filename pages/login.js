@@ -46,7 +46,7 @@ const Login = () => {
       <Head>
         <title>Login</title>
       </Head>
-      <Header />
+
       <main className="row main">
 
         <div className={styles.main}>

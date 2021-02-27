@@ -2,8 +2,9 @@
 const {
   Model
 } = require('sequelize');
+const users = require('./users.js')
 module.exports = (sequelize, DataTypes) => {
-  class users extends Model {
+  class units extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,20 +14,20 @@ module.exports = (sequelize, DataTypes) => {
       models['units'].hasMany(models['users']);
     }
   };
-  users.init({
+  units.init({
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    unitId: { type: DataTypes.INTEGER, foreignKey: 'units' },
     createAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-    hash: { type: DataTypes.STRING, allowNull: false },
-    salt: { type: DataTypes.STRING, allowNull: false },
-    username: { type: DataTypes.STRING, unique: true },
-    name: { type: DataTypes.STRING, allowNull: false },
+    city: { type: DataTypes.STRING, allowNull: false },
+    endereco: { type: DataTypes.STRING, allowNull: false },
+    url_img: { type: DataTypes.STRING, allowNull: true },
     email: { type: DataTypes.STRING, allowNull: false },
-    status: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
+    phone: { type: DataTypes.STRING, allowNull: false },
+    status: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true }
   }, {
     sequelize,
-    modelName: 'users',
-    indexes: [{ unique: true, fields: ['username'] }]
+    modelName: 'units',
+    indexes: [{ unique: true, fields: ['city'] }]
   });
-  return users;
+
+  return units;
 };

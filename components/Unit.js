@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Card, Button } from 'react-bootstrap';
-const Unidade = ({ id, name, descricao }) => {
+const Unidade = ({ id, city, endereco, email, phone }) => {
     const link = '/unidade/' + id
     return (
         <Link href={link}>
@@ -8,9 +8,11 @@ const Unidade = ({ id, name, descricao }) => {
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
-                    <Card.Title>{name}</Card.Title>
+                    <Card.Title>{city}</Card.Title>
                     <Card.Text>
-                        {descricao}
+                        {endereco}
+                        {email}
+                        {phone}
                     </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                 </Card.Body>

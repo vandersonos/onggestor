@@ -1,11 +1,11 @@
 
 import Layout from '../components/layout.js'
-import Unidade from "../components/Unidade.js";
+import ListUnits from "../components/ListUnits.js";
 const Home = () => {
 
     return (
         <Layout>
-            <Unidade id='1' name='Pelotas' descricao='teste de descricao'></Unidade>
+            <ListUnits />
         </Layout>
     )
 }
