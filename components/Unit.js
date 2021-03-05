@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Card, Button } from 'react-bootstrap';
 const Unidade = ({ id, uf, city, addres, district, email, phone }) => {
     const link = '/units/' + id
-    const link_edit = '/units/edit/' + id
+    const link_edit = '/units/' + id + '/edit'
     return (
 
 
@@ -16,8 +16,7 @@ const Unidade = ({ id, uf, city, addres, district, email, phone }) => {
                     {phone}<br />
                 </Card.Text>
                 <Link href={link}><Button variant="primary">Abrir</Button></Link >
-
-                <Link href={link_edit}><Button variant="success">Editar</Button></Link >
+                <Link href="/units/[id]/edit" as={link_edit}><Button variant="success">Editar</Button></Link >
             </Card.Body>
         </Card>
 

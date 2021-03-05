@@ -1,18 +1,18 @@
 import { Router } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const Form = ({ errorMessage, successMessage, onSubmit, unit }) => {
     useEffect(() => {
         document.getElementById('uf').value = unit?.uf
-    })
+    }, [unit])
     return (
         <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
             <form onSubmit={onSubmit}>
 
                 <div className="mb-3">
                     <label htmlFor='uf'> Estado </label>
-                    <select class="form-control" name="uf" id='uf'>
+                    <select className="form-control" name="uf" id='uf'>
                         <option value="-1">Selecione</option>
                         <option value="AC">AC</option>
                         <option value="AL">AL</option>
@@ -45,7 +45,7 @@ const Form = ({ errorMessage, successMessage, onSubmit, unit }) => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor='city'> Cidade </label>
-                    <input type="text" name="city" className="form-control" id="city" defaultValue={unit?.uf} required />
+                    <input type="text" name="city" className="form-control" id="city" defaultValue={unit?.city} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="addres" className="form-label">Endereço</label>

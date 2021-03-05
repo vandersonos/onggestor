@@ -1,42 +1,37 @@
-import { useUser, findUnits } from '../../../lib/hooks'
-import Layout from '../../../components/layout'
-import styles from '../../../styles/Home.module.css'
-import Form from '../../../components/form-unit'
+import { useRouter } from 'next/router'
+import { useUser } from '../../lib/hooks'
+import Layout from '../../components/layout'
+import styles from '../../styles/Home.module.css'
+import Form from '../../components/form-unit'
 import { useEffect, useState } from 'react'
-import Router, { useRouter } from 'next/router'
-const create = ({ id }) => {
+const edit = () => {
     const { query } = useRouter()
+
     const user = useUser({ redirectTo: '/login' })
+
     const [errorMsg, setErrorMsg] = useState('')
     const [successMsg, setSuccessMsg] = useState('')
     const [unit, setUnit] = useState({})
-
+    const getUnits = async () => {
+        if (!query.id) {
+            return;
+        }
+        const url = '/api/units/' + query.id
+        const u = await fetch(url)
+        console.log(u, 'u')
+        if (u.ok) {
+            const data = await u.json();
+            setUnit(data)
+        } else {
+            const e = await u.text();
+            setErrorMsg(e);
+        }
+    }
 
     useEffect(() => {
+        getUnits();
 
-        try {
-            const url = '/api/units/' + query.id
-            fetch(url)
-                .then((r) => {
-
-                    if (r.status === 200) {
-                        return r.json()
-                    } else {
-                        throw r.text()
-                    }
-                }
-                )
-                .then((data) => {
-                    console.log(data)
-                    //setUnit(data)
-                })
-        } catch (e) {
-
-            setErrorMsg(e);
-
-        }
-
-    }, [unit])
+    }, [query])
     async function handleSubmit(e) {
         e.preventDefault()
 
@@ -93,4 +88,4 @@ const create = ({ id }) => {
     )
 }
 
-export default create
+export default edit
