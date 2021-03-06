@@ -4,7 +4,7 @@ import { findUsers } from '../../../lib/user'
 export default async function list(req, res) {
     try {
         const users = await findUsers(req.body)
-        console.log(users)
+
 
         res.status(200).json(users)
     } catch (error) {

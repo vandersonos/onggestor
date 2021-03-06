@@ -3,7 +3,7 @@ export default function userHandler(req, res) {
         query: { id, name },
         method,
     } = req
-    console.log('select')
+
 
     switch (method) {
         case 'GET':

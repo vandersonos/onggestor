@@ -1,16 +1,19 @@
-import { Router } from 'next/router'
+import File from './form-file.js'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const Form = ({ errorMessage, successMessage, onSubmit, unit }) => {
     useEffect(() => {
-        document.getElementById('uf').value = unit?.uf
+        document.getElementById('uf').value = (unit?.uf) ? (unit?.uf) : 'RS'
     }, [unit])
+
     return (
         <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
+            <File label='Foto' name='img' file={unit?.file} url={'/api/units/uploadimg/'} />
             <form onSubmit={onSubmit}>
-
                 <div className="mb-3">
+                    <input type='hidden' name='id' id='id' defaultValue={unit?.id} />
                     <label htmlFor='uf'> Estado </label>
                     <select className="form-control" name="uf" id='uf'>
                         <option value="-1">Selecione</option>
@@ -70,8 +73,11 @@ const Form = ({ errorMessage, successMessage, onSubmit, unit }) => {
                 </div>
 
                 <div className={styles.toolbar} >
-                    <button type="submit" className="btn btn-primary mb-4 mt-4">Inserir</button>
-                    <button type="buttom" className="btn btn-primary mb-4 mt-4" onClick={() => Router.push('/')}>Cancelar</button>
+                    <button type="submit" className="btn btn-primary mb-4 mt-4">{unit ? 'Alterar' : 'Inserir'}</button>
+                    <Link href='/' >
+
+                        <button type="buttom" className="btn btn-primary mb-4 mt-4" >Cancelar</button>
+                    </Link>
                 </div>
 
                 {successMessage && <p className="alert alert-success">{successMessage}</p>}

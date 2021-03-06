@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
-import { useUser } from '../../lib/hooks'
-import Layout from '../../components/layout'
-import styles from '../../styles/Home.module.css'
-import Form from '../../components/form-unit'
+import { useUser } from '../../../lib/hooks'
+import Layout from '../../../components/layout'
+import styles from '../../../styles/Home.module.css'
+import Form from '../../../components/form-unit'
 import { useEffect, useState } from 'react'
 const edit = () => {
-    const { query } = useRouter()
+    const Router = useRouter()
 
     const user = useUser({ redirectTo: '/login' })
 
@@ -13,10 +13,10 @@ const edit = () => {
     const [successMsg, setSuccessMsg] = useState('')
     const [unit, setUnit] = useState({})
     const getUnits = async () => {
-        if (!query.id) {
+        if (!Router.query.id) {
             return;
         }
-        const url = '/api/units/' + query.id
+        const url = '/api/units/' + Router.query.id
         const u = await fetch(url)
         console.log(u, 'u')
         if (u.ok) {
@@ -31,14 +31,14 @@ const edit = () => {
     useEffect(() => {
         getUnits();
 
-    }, [query])
+    }, [Router.query])
     async function handleSubmit(e) {
         e.preventDefault()
 
         if (errorMsg) setErrorMsg('')
 
         const body = {
-            id: id,
+            id: e.currentTarget.id.value,
             uf: e.currentTarget.uf.value,
             city: e.currentTarget.city.value,
             addres: e.currentTarget.addres.value,
@@ -55,16 +55,20 @@ const edit = () => {
                 body: JSON.stringify(body),
             })
             if (res.status === 200) {
-                setSuccessMsg('Unidade criada com sucesso!')
+                console.log(res);
+                setSuccessMsg('Unidade atualizada com sucesso!')
+                setErrorMsg('')
                 setTimeout(() => {
                     setSuccessMsg('')
+
                     Router.push('/');
-                }, 2000);
+                }, 3000);
             } else {
                 throw await res.text()
             }
         } catch (error) {
             console.error('An unexpected error happened occurred:', error)
+            setSuccessMsg('')
             setErrorMsg(error.message)
         }
     }

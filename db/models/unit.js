@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     createAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     city: { type: DataTypes.STRING, allowNull: false },
+    uf: { type: DataTypes.STRING, allowNull: false },
     addres: { type: DataTypes.STRING, allowNull: false },
     district: { type: DataTypes.STRING, allowNull: false },
     cep: { type: DataTypes.STRING, allowNull: false },
