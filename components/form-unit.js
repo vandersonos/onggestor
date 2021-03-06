@@ -7,10 +7,14 @@ const Form = ({ errorMessage, successMessage, onSubmit, unit }) => {
     useEffect(() => {
         document.getElementById('uf').value = (unit?.uf) ? (unit?.uf) : 'RS'
     }, [unit])
+    let file = '/img/house.jpg'
+    if (unit && unit.file) {
+        file = unit.file
+    }
 
     return (
         <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
-            <File label='Foto' name='img' file={unit?.file} url={'/api/units/uploadimg/'} />
+            <File label='Foto' name='img' file={file} url={'/api/units/uploadimg/'} flImg='true' />
             <form onSubmit={onSubmit}>
                 <div className="mb-3">
                     <input type='hidden' name='id' id='id' defaultValue={unit?.id} />

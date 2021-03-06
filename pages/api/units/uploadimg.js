@@ -1,37 +1,40 @@
 const path = require('path')
-const slugfile = require('slugify')
+const fs = require('fs')
 const formidable = require('formidable-serverless')
+
 export const config = {
     api: {
-        bodyParse: false
+        bodyParser: false
     }
 }
-export default async (req, res) => {
-    try {
+async function endpoint(req, res) {
+    const destino = path.resolve('./') + '/public/units/';
 
-        const data = await new Promise((resolve, reject) => {
-
-            const form = formidable({
-                multiple: true,
-                uploadDir: './public/ongs/units/'
-            });
-            form.keepExtensions = true;
-            form.keepFileName = true;
-
-            form.on("fileBegin", (name, file) => {
-                file.path = path.join('./public/ongs/units/', slugfile(file.name));
-            })
-            form.parse(req, (err, fields, files) => {
-                if (err) {
-                    return reject(err)
-                }
-                return resolve(files)
-            })
+    if (!fs.existsSync(destino)) {
+        fs.mkdirSync(destino, { recursive: true })
+    }
+    await new Promise(function (resolve, reject) {
+        const form = formidable({
+            multiples: true
+        });
+        form.keepExtensions = true;
+        form.keepFileName = true;
+        form.on("fileBegin", (name, file) => {
+            const nome = new Date().getTime() + file.name.substring(file.name.indexOf('.'))
+            file.path = path.join(destino, nome);
+            file.nome = nome;
         })
-        res.json(data)
+        form.parse(req, function (err, fields, files) {
+            if (err) return reject(err);
+            resolve({ fields, files });
+        });
+    })
+        .then((data) => {
+            return res.status(200).json({ ok: true, file: '/units/' + data.files.image.nome })
+        })
+        .catch((err) => {
+            return res.status(500).json({ ok: false, msg: 'Ocorreu um erro ao processar sua imagem!' })
+        })
 
-    } catch (error) {
-        console.error(error)
-        res.status(500).end('Ocorreu um erro ao consultar as unidades')
-    }
 }
+export default endpoint
