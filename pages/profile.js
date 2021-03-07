@@ -16,6 +16,7 @@ const Profile = () => {
             username: e.currentTarget.username.value,
             password: e.currentTarget.password.value,
             email: e.currentTarget.email.value,
+            url_img: e.currentTarget.url_img.value,
         }
 
         if (body.password !== e.currentTarget.rpassword.value) {
@@ -41,7 +42,7 @@ const Profile = () => {
             }
         } catch (error) {
             console.error('An unexpected error happened occurred:', error)
-            setErrorMsg(error.message)
+            setErrorMsg(error)
         }
     }
     return (

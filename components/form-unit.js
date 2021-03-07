@@ -8,14 +8,14 @@ const Form = ({ errorMessage, successMessage, onSubmit, unit }) => {
         document.getElementById('uf').value = (unit?.uf) ? (unit?.uf) : 'RS'
     }, [unit])
     let file = '/img/house.jpg'
-    if (unit && unit.file) {
-        file = unit.file
+    if (unit && unit.url_img) {
+        file = unit.url_img
     }
 
     return (
         <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
-            <File label='Foto' name='img' file={file} url={'/api/units/uploadimg/'} flImg='true' />
             <form onSubmit={onSubmit}>
+                <File label='Foto' name='url_img' file={file} url={'/api/units/uploadimg/'} flImg='true' />
                 <div className="mb-3">
                     <input type='hidden' name='id' id='id' defaultValue={unit?.id} />
                     <label htmlFor='uf'> Estado </label>

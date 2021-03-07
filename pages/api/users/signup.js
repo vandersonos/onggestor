@@ -2,7 +2,6 @@ import { createUser, findUser } from '../../../lib/user'
 
 export default async function signup(req, res) {
     try {
-        console.log('signup')
         const username = await findUser({ username: req.body.username })
         if (username) {
             throw 'O CPF já está cadastrado na base de dados!'

@@ -27,6 +27,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      url_img: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       phone: {
         allowNull: false,
         type: Sequelize.STRING

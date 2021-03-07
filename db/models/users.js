@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     username: { type: DataTypes.STRING, unique: true },
     name: { type: DataTypes.STRING, allowNull: false },
     email: { type: DataTypes.STRING, allowNull: false },
+    url_img: { type: DataTypes.STRING, allowNull: false },
     status: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
   }, {
     sequelize,

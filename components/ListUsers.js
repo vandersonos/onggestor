@@ -5,11 +5,14 @@ const ListUsers = () => {
     const [errorMsg, setErrorMsg] = useState('')
     const [filters, setFilters] = useState({})
     const [users, setUsers] = useState([])
+    const [loading, setLoading] = useState(true)
     const busca = async (filters) => {
+        setLoading(true)
         const data = await getUsers(filters)
         if (data.error) {
             setErrorMsg(data.error)
         }
+        setLoading(false)
         setUsers(data.users);
     }
     useEffect(() => {
@@ -39,6 +42,10 @@ const ListUsers = () => {
                     </tr>
                 </thead>
                 <tbody>
+
+
+                    {loading && <tr><td colspan='5'> <p className="alert alert-info"><i className="fas fa-spinner fa-spin"> </i>  Carregando...</p></td> </tr>}
+
                     {
                         users.map((u) => {
                             return (<tr >

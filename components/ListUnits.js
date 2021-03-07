@@ -7,11 +7,14 @@ const ListUnits = () => {
     const [errorMsg, setErrorMsg] = useState('')
     const [filters, setFilters] = useState({})
     const [units, setUnits] = useState([])
+    const [loading, setLoading] = useState(true)
     const busca = async (filters) => {
+        setLoading(true)
         const data = await getUnits(filters)
         if (data.error) {
             setErrorMsg(data.error)
         }
+        setLoading(false)
         setUnits(data.units);
     }
     useEffect(() => {
@@ -37,10 +40,11 @@ const ListUnits = () => {
             </div>
             <hr />
             <div className='list-units'>
+                {loading && <p className="alert alert-info"><i className="fas fa-spinner fa-spin"> </i>  Carregando...</p>}
 
                 {
                     units.map((u) => {
-                        return <Unit city={u.city} addres={u.addres} uf={u.uf} district={u.district} email={u.email} phone={u.phone} id={u.id} />
+                        return <Unit key={u.id} city={u.city} addres={u.addres} uf={u.uf} district={u.district} email={u.email} phone={u.phone} id={u.id} url_img={u.url_img} />
                     })
                 }
             </div>

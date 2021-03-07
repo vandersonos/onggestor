@@ -18,7 +18,6 @@ const edit = () => {
         }
         const url = '/api/units/' + Router.query.id
         const u = await fetch(url)
-        console.log(u, 'u')
         if (u.ok) {
             const data = await u.json();
             setUnit(data)
@@ -45,7 +44,8 @@ const edit = () => {
             district: e.currentTarget.district.value,
             cep: e.currentTarget.cep.value,
             email: e.currentTarget.email.value,
-            phone: e.currentTarget.phone.value
+            phone: e.currentTarget.phone.value,
+            url_img: e.currentTarget.url_img.value
         }
 
         try {

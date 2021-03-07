@@ -1,16 +1,24 @@
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-
+import File from './form-file.js'
 const Form = ({ isLogin, errorMessage, successMessage, onSubmit, user }) => {
-
+    let url_img = '/img/user.jpg'
+    if (user && user.url_img) {
+        url_img = user.url_img
+    }
     return (
         <div className="border rounded p-3 col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4 col-xxl-3 m-auto">
+
             <form onSubmit={onSubmit}>
                 {!isLogin && (
-                    <div className="mb-3">
-                        <label htmlFor='name'> Nome </label>
-                        <input type="text" name="name" className="form-control" id="name" required defaultValue={user ? user.name : ''} />
-                    </div>)
+                    <>
+                        <File label='Foto' name='url_img' file={url_img} url={'/api/users/uploadimg/'} flImg='true' />
+                        <div className="mb-3">
+                            <label htmlFor='name'> Nome </label>
+                            <input type="text" name="name" className="form-control" id="name" required defaultValue={user ? user.name : ''} />
+                        </div>
+                    </>
+                )
                 }
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">CPF</label>
