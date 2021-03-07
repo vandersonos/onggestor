@@ -50,19 +50,20 @@ const Login = () => {
       <main className="row main">
 
         <div className={styles.main}>
+          <div className='container'>
+            <div className="row mt-5 ">
 
-          <div className="row mt-5 ">
+              <div className="col-10 pt-5">
+                <h1 className={styles.title}>Casa Vida</h1>
 
-            <div className="col-10 pt-5">
-              <h1 className={styles.title}>Casa Vida</h1>
-
-              <p className={styles.description}>
-                Quando você abraça uma causa a causa abraça você.
+                <p className={styles.description}>
+                  Quando você abraça uma causa a causa abraça você.
             </p>
-            </div>
-            <div className="col-2 d-flex justify-content-center">
-              <img src="/logo.png" alt="Casa Vida Logo" />
+              </div>
+              <div className="col-2 d-flex justify-content-center">
+                <img src="/logo.png" alt="Casa Vida Logo" />
 
+              </div>
             </div>
           </div>
           <div className="row mt-5 w-100">
@@ -73,6 +74,7 @@ const Login = () => {
         </div>
 
       </main>
+
       <footer className="footer">
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -106,6 +108,10 @@ const Login = () => {
           padding: 1rem;
           border: 1px solid #ccc;
           border-radius: 4px;
+        }
+        .footer{
+          position:relative;
+          bottom:0;
         }
     `}</style>
     </>

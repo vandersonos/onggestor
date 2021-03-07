@@ -50,7 +50,7 @@ const Form = ({ label, name, file, url, flImg }) => {
 
     return (
         <div className='fileUpload'>
-            <Card style={{ width: '18rem', margin: '2px' }}>
+            <Card style={{ width: '18rem', margin: 'auto' }}>
                 {flImg ? (<Card.Img variant="top" src={valuefile} style={{ 'border-bottom': 'solid 1px rgba(0,0,0,0.125)', opacity: opacity }} />) : ''}
                 <Card.Body>
                     <div className="mb-3 fileUpload">
