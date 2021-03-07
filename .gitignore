@@ -6,6 +6,7 @@
 .pnp.js
 /public/units/
 /public/ongs/
+/public/users/
 # testing
 /coverage
 
