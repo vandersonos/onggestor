@@ -6,12 +6,13 @@ import InputMask from 'react-input-mask';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import pt from 'date-fns/locale/pt';
+import locale from '../lib/locale';
 //registerLocale('pt', pt)
 
 
 const Form = ({ errorMessage, successMessage, onSubmit, paciente }) => {
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(paciente?.data_entrada);
+    const [nascimento, setNascimento] = useState(paciente?.data_nascimento);
     useEffect(() => {
         document.getElementById('uf').value = (paciente?.uf) ? (paciente?.uf) : 'RS'
     }, [paciente])
@@ -30,11 +31,15 @@ const Form = ({ errorMessage, successMessage, onSubmit, paciente }) => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor='data_entrada'>Data de entrada:</label>
-                    <DatePicker locale='pt' selected={startDate} onChange={date => setStartDate(date)} />
+                    <DatePicker locale={locale} selected={startDate} onChange={date => setStartDate(date)} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor='data_nascimento'>Data de entrada:</label>
-                    <DatePicker locale='pt' selected={startDate} onChange={date => setStartDate(date)} />
+                    <DatePicker locale='pt' selected={nascimento} onChange={date => setStartDate(date)} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor='age'>Idade:</label>
+                    <input type="text" name="age" className="form-control" id="age" defaultValue={paciente?.age} />
                 </div>
                 <div className="mb-3">
                     <input type='hidden' name='id' id='id' defaultValue={paciente?.id} />
