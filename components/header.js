@@ -20,6 +20,9 @@ const Header = () => {
             <Nav.Item as="li">
               <Nav.Link href="/users">Usuários</Nav.Link>
             </Nav.Item>
+            <Nav.Item as="li">
+              <Nav.Link href="/patients">Pacientes</Nav.Link>
+            </Nav.Item>
 
             {user ? (
               <>

@@ -14,6 +14,7 @@ const ListPatients = () => {
         if (data.error) {
             setErrorMsg(data.error)
         }
+        console.log(data, 'data')
         setLoading(false)
         setPatients(data.patients);
     }
@@ -36,7 +37,7 @@ const ListPatients = () => {
 
                 {
                     patients.map((u) => {
-                        return <Patients key={u.id} city={u.city} addres={u.addres} uf={u.uf} district={u.district} email={u.email} phone={u.phone} id={u.id} url_img={u.url_img} />
+                        return <div>teste p</div>
                     })
                 }
             </div>
