@@ -6,6 +6,6 @@ export default async function list(req, res) {
         res.status(200).json(units)
     } catch (error) {
         console.error(error)
-        res.status(500).end('Oceorreu um erro ao consultar os usuários')
+        res.status(500).end('Oceorreu um erro ao consultar os unidades')
     }
 }
