@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     cpf: { type: DataTypes.STRING, allowNull: false },
     cd_sexo: { type: DataTypes.STRING, allowNull: false },
     cor: { type: DataTypes.STRING, allowNull: true },
-    id_pathology: { type: DataTypes.INTEGER, allowNull: true },
+    pathology: { type: DataTypes.STRING, allowNull: true },
     addres: { type: DataTypes.STRING, allowNull: false },
     district: { type: DataTypes.STRING, allowNull: false },
     cep: { type: DataTypes.STRING, allowNull: false },

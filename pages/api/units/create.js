@@ -1,6 +1,6 @@
 import { createUnit, findUnit } from '../../../lib/units'
 
-export default async function signup(req, res) {
+export default async function create(req, res) {
     try {
         const email = await findUnit({ email: req.body.email })
         if (email) {

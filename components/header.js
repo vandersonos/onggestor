@@ -23,6 +23,9 @@ const Header = () => {
             <Nav.Item as="li">
               <Nav.Link href="/patients">Pacientes</Nav.Link>
             </Nav.Item>
+            <Nav.Item as="li">
+              <Nav.Link href="/questionnaires">Questionários</Nav.Link>
+            </Nav.Item>
 
             {user ? (
               <>
@@ -33,10 +36,10 @@ const Header = () => {
                 </NavDropdown>
               </>
             ) : (
-                <Nav.Item as="li">
-                  <Nav.Link href="/login">Entrar</Nav.Link>
-                </Nav.Item>
-              )}
+              <Nav.Item as="li">
+                <Nav.Link href="/login">Entrar</Nav.Link>
+              </Nav.Item>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
